@@ -8,7 +8,8 @@ struct LibraryCard {
 	const char* subject{};
 	const char* isbn{};
 	const char* oclc{};
-	double dewey{}; 
+	int ddc1{};
+        int ddc2{};	
 	int yearPublished{}; 
 	int yearAcquired{};
 	int quantity{};
@@ -22,7 +23,8 @@ int main() {
 	"Fiction", 
 	"2989018429-247189047209", 
 	"12555530", 
-	124024.53,
+	12402453,
+	243,
         1999,
 	2000,
 	2,	
