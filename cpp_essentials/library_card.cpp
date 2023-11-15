@@ -2,16 +2,16 @@
 #include <iostream>
 
 struct LibraryCard { 
-	const char* title;
-	const char* author;
-	const char* publisher;
-	const char* subject;
-	const char* isbn;
-	const char* oclc;
-	double dewey; 
-	int yearPublished; 
-	int yearAcquired;
-	int quantity;
+	const char* title{};
+	const char* author{};
+	const char* publisher{};
+	const char* subject{};
+	const char* isbn{};
+	const char* oclc{};
+	double dewey{}; 
+	int yearPublished{}; 
+	int yearAcquired{};
+	int quantity{};
 };
 
 int main() {
