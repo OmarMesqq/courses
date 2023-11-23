@@ -9,10 +9,12 @@ int fac(int n) {
 
 
 bool is_prime(int n, int i) {
-    if (i == 1) return true;
+    if (i <= 1) {
+        if (i == 1) return true;
+        else return false;
+    }
     if (n % i == 0) return false;
     return is_prime(n, i - 1);
-
 }
 
 void prime_numbers() {
@@ -25,6 +27,5 @@ void prime_numbers() {
 
 int main() {
     prime_numbers();
-    // std::cout << is_prime(7,6);
     return 0;
 }
