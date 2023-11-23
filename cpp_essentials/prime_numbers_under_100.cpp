@@ -8,22 +8,23 @@ int fac(int n) {
 }
 
 
-bool is_prime(int n) {
-    for (int i = n - 1; true; i--) {
-        if (i == 1) return true;
-        if (n % i == 0) return false; 
-    }
-    return false;
+bool is_prime(int n, int i) {
+    if (i == 1) return true;
+    if (n % i == 0) return false;
+    return is_prime(n, i - 1);
+
 }
 
 void prime_numbers() {
-
+    for (int i = 0; i <= 100; i++) {
+        if (is_prime(i,i-1)) {
+            std::cout << std::format("{}\n", i);
+        }
+    }
 }
 
 int main() {
-    // std::cout << "Prime numbers under 100:\n";
-    // prime_numbers();
-    // bool x = is_prime(4);
-    // std::cout << std::format("{}", x);
+    prime_numbers();
+    // std::cout << is_prime(7,6);
     return 0;
 }
