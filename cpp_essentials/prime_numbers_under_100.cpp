@@ -8,7 +8,7 @@ int fac(int n) {
 }
 
 
-bool is_prime(int n, int i) {
+bool is_prime(const int n, int i) {
     if (i <= 1) {
         if (i == 1) return true;
         else return false;
