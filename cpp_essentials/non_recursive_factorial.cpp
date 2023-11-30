@@ -1,4 +1,5 @@
 #include <iostream>
+
 // TODO: implement with while and decrementing
 int non_recursive_factorial(const int n) {
     if (n <= 1) {
@@ -13,6 +14,11 @@ int non_recursive_factorial(const int n) {
         product *= i;
     }
     return product;
+}
+
+int recursive_factorial(int n) {
+    if (n == 1) return 1;
+    return n * recursive_factorial(n - 1);
 }
 
 int main() {
