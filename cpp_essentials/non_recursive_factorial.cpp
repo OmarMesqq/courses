@@ -1,6 +1,6 @@
 #include <iostream>
 
-// TODO: implement with while and decrementing
+
 int non_recursive_factorial(const int n) {
     if (n <= 1) {
         if (n < 0) {
