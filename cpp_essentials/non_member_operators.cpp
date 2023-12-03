@@ -3,18 +3,14 @@
 #include <string> 
 
 
-// Member vs non member operators:
-
 // Implementation
 class Rational {
     int numerator {0};
     int denominator {1};
 public:
-    // default constructor
     Rational(int n = 0, int d = 1): numerator(n), denominator(d) {}
-    // copy constructor
     Rational(const Rational& rhs): numerator(rhs.numerator), denominator(rhs.denominator) {}
-    ~Rational(); 
+    ~Rational() {}; 
 
     int getNumerator() const {return numerator;}
     int getDenominator() const {return denominator;}
@@ -38,11 +34,16 @@ int gcd(int n, int d) {
 }
 
 // Interface
-Rational::~Rational() {
-    // std::cout << "Destructor called!\n";
-}
-
-
+// Here, we use member functions for assignment
+// because it's an operation that is tied to 
+// the Rational object. It takes one argument: 
+// implicitly the left hand side (the object being called on) and
+// the right hand side of the equals operator.
+// 
+// For arithmetic operations, which can be made 
+// in conjunction with other data types, 
+// non member functions are used because they allow
+// ints, floats etc to be implicitly constructed to Rational instances
 Rational Rational::reduce() const {
   Rational reducedRational;
     int _gcd = gcd(numerator, denominator);
@@ -57,11 +58,7 @@ std::string Rational::str() const {
     return std::format("{}/{}", numerator, denominator);
 }
 
-// Member function takes one argument: 
-// implicitly the left hand side (the object being called on) and
-// the right hand side of the equals operator.  
-// It is a reference (an alias to the actual object)
-// Inside the function we get its address with &
+
 Rational& Rational::operator = (const Rational& rhs) {
     if (this != &rhs) {
         this->numerator = rhs.numerator; 
