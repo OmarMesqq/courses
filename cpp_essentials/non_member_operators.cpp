@@ -22,10 +22,15 @@ public:
     Rational reduce() const;
 
     std::string str() const;
-    std::string raw_str() const;
 
     Rational& operator = (const Rational&);
+
+    friend Rational operator +(const Rational& lhs, const Rational& rhs);
+    friend Rational operator -(const Rational& lhs, const Rational& rhs);
+    friend Rational operator *(const Rational& lhs, const Rational& rhs);
+    friend Rational operator /(const Rational& lhs, const Rational& rhs);
 };
+
 
 int gcd(int n, int d) {
     if (n / d == 0) return n;
@@ -47,14 +52,16 @@ Rational Rational::reduce() const {
     return reducedRational;
 };
 
+
 std::string Rational::str() const {
     return std::format("{}/{}", numerator, denominator);
 }
 
-// One argument: right hand side of = operator
+// Member function takes one argument: 
+// implicitly the left hand side (the object being called on) and
+// the right hand side of the equals operator.  
 // It is a reference (an alias to the actual object)
 // Inside the function we get its address with &
-// The left hand side of the assignment is the object on which the operator is called
 Rational& Rational::operator = (const Rational& rhs) {
     if (this != &rhs) {
         this->numerator = rhs.numerator; 
@@ -63,32 +70,35 @@ Rational& Rational::operator = (const Rational& rhs) {
     return *this;
 };
 
+
 Rational operator + (const Rational& lhs, const Rational& rhs)  {
     return Rational(
-        lhs.getNumerator() * rhs.getDenominator() + rhs.getNumerator() * lhs.getDenominator(),
-        lhs.getDenominator() * rhs.getDenominator()
+        lhs.numerator * rhs.denominator + rhs.numerator * lhs.denominator,
+        lhs.denominator * rhs.denominator
     );
 };
 
+
 Rational operator - (const Rational& lhs, const Rational& rhs) {
     return Rational(
-        lhs.getNumerator() * rhs.getDenominator() - rhs.getNumerator() * lhs.getDenominator(),
-        lhs.getDenominator() * rhs.getDenominator()
+        lhs.numerator * rhs.denominator - rhs.numerator * lhs.denominator,
+        lhs.denominator * rhs.denominator
     );
 }
 
 
 Rational operator * (const Rational& lhs, const Rational& rhs) {
     return Rational(
-        lhs.getNumerator() * rhs.getNumerator(),
-        lhs.getDenominator() * rhs.getDenominator()
+        lhs.numerator * rhs.numerator,
+        lhs.denominator * rhs.denominator
     );
 };
 
+
 Rational operator / (const Rational& lhs, const Rational& rhs) {
     return Rational(
-        lhs.getNumerator() * rhs.getDenominator(),
-        lhs.getDenominator() * rhs.getNumerator()
+        lhs.numerator * rhs.denominator,
+        lhs.denominator * rhs.numerator
     );
 };
 
@@ -96,7 +106,8 @@ Rational operator / (const Rational& lhs, const Rational& rhs) {
 
 int main() {
     Rational a {4,3}; 
-    // std::cout << std::format("20 - {} = {}", a.str(), (20 - a).str()) <<  std::endl;
+    std::cout << std::format("20 - {} = {}", a.str(), (20 - a).str()) <<  std::endl;
+    std::cout << std::format("{} - 20 = {}", a.str(), (a - 20).str()) <<  std::endl;
 
     Rational b {1,2}; 
     Rational c {3,7}; 
