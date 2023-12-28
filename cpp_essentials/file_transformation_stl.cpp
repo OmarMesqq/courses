@@ -8,11 +8,12 @@ struct Frac {
 };
 
 
+// format specialization for the "Frac" type
 template <typename T> 
 struct std::formatter<Frac<T>>: std::formatter<unsigned> {
     template <typename Context> 
     auto format (const Frac<T>& f, Context& ctx) const {
-        return format_to(ctx.out(), "{}/{}", f.n, f.d)
+        return format_to(ctx.out(), "{}/{}", f.n, f.d);
     }
 };
 
