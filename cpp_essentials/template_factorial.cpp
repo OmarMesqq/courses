@@ -1,7 +1,3 @@
-// Templates are useful when 
-// a container of items is declared
-// and the manipulation logic is type independent
-
 #include <iostream>
 
 template <typename T>

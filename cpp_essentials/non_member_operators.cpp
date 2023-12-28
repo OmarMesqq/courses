@@ -3,7 +3,6 @@
 #include <string> 
 
 
-// Implementation
 class Rational {
     int numerator {0};
     int denominator {1};
@@ -33,17 +32,7 @@ int gcd(int n, int d) {
     return gcd( n % d, d);
 }
 
-// Interface
-// Here, we use member functions for assignment
-// because it's an operation that is tied to 
-// the Rational object. It takes one argument: 
-// implicitly the left hand side (the object being called on) and
-// the right hand side of the equals operator.
-// 
-// For arithmetic operations, which can be made 
-// in conjunction with other data types, 
-// non member functions are used because they allow
-// ints, floats etc to be implicitly constructed to Rational instances
+
 Rational Rational::reduce() const {
   Rational reducedRational;
     int _gcd = gcd(numerator, denominator);
